@@ -1,0 +1,55 @@
+zagolovok=str(input())
+color_zag=str(input())
+color_text=str(input())
+text1=str(input())
+maintext=str(input())
+------------------------------
+zagolovok='Hello'
+color_zag='blue'
+color_text='red'
+text1='Title 1'
+maintext='Article text'
+
+def mytag(tagname='p'):
+    def decorator(func):
+        def inner(text):
+            print('<'+tagname+'>',end='')
+            func(text)
+            print('</'+tagname+'>',end='')
+        return inner
+    return decorator
+
+def mytag2(tagname='p'):
+    def decorator(func):
+        def inner(text):
+            print('<'+tagname+'>',end='')
+            func(text)
+            print('</'+tagname+'>',end='')
+        return inner
+    return decorator
+
+@mytag('title')
+def hello(text):
+    print(text, end='')
+
+@mytag2('h1')
+def hello2(text):
+    print(text, end='')
+
+@mytag('p')
+def hello3(text):
+    print(text, end='')
+
+print('<html>')
+print('<head>')
+hello(zagolovok)
+print('')
+print('<style>h1{color:'+color_zag+'}p{color:'+color_text+'}</style>')
+print('</head>')
+print('<body>')
+hello2(text1)
+print('')
+hello3(maintext)
+print('')
+print('</body>')
+print('</html>')
