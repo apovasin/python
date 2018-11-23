@@ -1,0 +1,45 @@
+import urllib.request
+import urllib.parse
+from urllib.parse import urlparse
+from urllib.parse import urlunparse
+from urllib.parse import urlsplit
+from urllib.parse import urlunsplit
+from urllib.parse import urlsplit
+from urllib.parse import urlunsplit
+import re
+
+readed_url=input()
+url_file=urllib.request.urlopen(readed_url)
+html_file=url_file.read()
+url_res=urlparse(readed_url)
+url_res_tuple=tuple(url_res)
+print(url_res_tuple)
+
+text = str(html_file)
+pattern = "<h1>"
+h1_open=[]
+h1_close=[]
+
+for match in re.finditer(pattern, text):
+    h1_open.append(match.end())
+    pos=match.end()
+    match = re.search('</h1>', text[pos:])
+    h1_close.append(match.start())
+
+i=0
+for j in h1_open:
+    print(text[h1_open[i]:h1_open[i]+h1_close[i]],end=' ')
+    i=i+1
+
+
+-----------------------------------------
+text = '<h1>hello1</h1><h1>hello2</h1>'
+'http://en.ifmo.ru/en/contacts/Contacts.htm'
+url_file.getcode()
+url_res[1]
+print(url_file.info())
+html_1=html_file.decode('utf-8')
+
+
+url_res=urlsplit('http://en.ifmo.ru/en/contacts/Contacts.htm')
+tuple(list(url_res)
