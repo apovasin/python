@@ -1,0 +1,56 @@
+import re
+from scipy import spatial
+import numpy as np
+f = open('sentences.txt', 'r')
+t=''
+for line in f:
+    t=t+line.lower()
+
+sentenses=re.split('\n', t)
+words=set(re.split('[^a-z]', t))
+words.remove('')
+d = {}
+j=0
+for i in words:
+    d[j]=i
+    j=j+1
+
+result=np.ones((22, 254))
+    
+j=0
+wins=[]
+for i in sentenses:
+    temp=re.split('[^a-z]', i)
+    while '' in temp:
+        temp.remove('')
+    wins.append(temp)
+    j=j+1
+	
+wins.remove([])
+k=0
+
+for j in range(22):
+    for i in d.keys():
+        k=0
+        while d[i] in wins[j]:
+            k=k+1
+            wins[j].remove(d[i])
+        result[j,i]=k
+        
+otvet=[]
+for i in result:
+    otvet.append(spatial.distance.cosine(result[0],i))
+
+owi={}
+for i in range(22):
+    owi[otvet[i]]=i
+
+uploadtext=''
+owi.pop(0.0)
+uploadtext=uploadtext+str(owi[min(owi.keys())])
+uploadtext=uploadtext+' '
+owi.pop(min(owi.keys()))
+uploadtext=uploadtext+str(owi[min(owi.keys())])
+file=open('otvet.txt','w')
+file.write(uploadtext)
+file.close()
