@@ -27,3 +27,11 @@ pyplot.show()
 from scipy import optimize
 otvet=optimize.minimize(lambda x:sin(x/5)*exp(x/10)+5*exp(-x / 2),30,method='BFGS')
 optimize.differential_evolution(lambda x:int(sin(x/5)*exp(x/10)+5*exp(-x/2)),[(0, 30)])
+
+#shot version
+from matplotlib import pyplot
+x=list(map(lambda x:x/10, list(range(100))))
+y=[-sin(x) for x in x]
+optimize.differential_evolution(lambda x:-sin(x),[(0, 10)])
+pyplot.plot(x,y)
+pyplot.show()
