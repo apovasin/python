@@ -1,0 +1,29 @@
+from math import *
+from matplotlib import pyplot
+from matplotlib import rc
+from scipy import *
+ 
+font = {
+    'family': 'Arial',
+    'weight': 'normal',
+    'size': 12,
+}
+rc('font', **font)
+ 
+x = list(map(lambda x: x/10,list(range(300))))  # Время
+#y = [3.43914511-0.18692825*x for x in x]
+#y = [3.32512949 - 0.06531159*x - 0.00760104*x*x for x in x]
+#y = [4.36264154 - 1.29552587*x + 0.19333685*x*x - 0.00823565*x*x*x for x in x]
+y = [sin(x / 5) * exp(x / 10) + 5 * exp(-x / 2) for x in x]  # Сигнал
+y = [int(x) for x in x]
+
+ 
+pyplot.ylabel('y')
+pyplot.xlabel('x')
+pyplot.plot(x, y)
+pyplot.grid()
+pyplot.show()
+
+from scipy import optimize
+otvet=optimize.minimize(lambda x:sin(x/5)*exp(x/10)+5*exp(-x / 2),30,method='BFGS')
+optimize.differential_evolution(lambda x:int(sin(x/5)*exp(x/10)+5*exp(-x/2)),[(0, 30)])
