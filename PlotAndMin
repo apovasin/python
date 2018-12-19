@@ -30,7 +30,7 @@ optimize.differential_evolution(lambda x:int(sin(x/5)*exp(x/10)+5*exp(-x/2)),[(0
 
 #shot version
 from matplotlib import pyplot
-x=list(map(lambda x:x/10, list(range(100))))
+x=list(map(lambda x:x/10, list(range(100)))) #np.linspace(0,10,101)
 y=[-sin(x) for x in x]
 optimize.differential_evolution(lambda x:-sin(x),[(0, 10)])
 pyplot.plot(x,y)
