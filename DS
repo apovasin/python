@@ -1,0 +1,91 @@
+%matplotlib inline
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.stats as sts
+from statsmodels.distributions.empirical_distribution import ECDF
+
+
+dweibull(loc=0.00, c=2.07, scale=1.00)
+cauchy(loc=0.00, scale=1.00)
+
+cauchy = st.cauchy()
+
+# Генерация 100 случайных чисел
+cauchy.rvs(size=100)
+
+cdf = cauchy_rv.cdf(x)
+plt.plot(x, cdf, label='theoretical CDF')
+
+
+
+plt.hist(sample, bins=10, normed=True)
+plt.show()
+
+
+
+#Создаем распределение Double Weibull
+dweibull_rv = sts.dweibull(loc=0.00, c=2.07, scale=1.00)
+#Генерируем выборку объёма 1000 
+sample = dweibull_rv.rvs(1000)
+#Генерируем массив из 1000 значений от -4 до 4 отстоящих друг от друга на равных промежутках
+x = np.linspace(-4,4,1000)
+#
+pdf = dweibull_rv.pdf(x)
+
+#Создаём таблицу из 1000 строк и 1 столбца на основе сгенерированной ранее выборки
+df = pd.DataFrame(sample, columns=['KDE'])
+ax = df.plot(kind='density')
+
+
+
+plt.plot(x, pdf, label='theoretical pdf', alpha=0.5)
+plt.hist(sample, bins=30, normed=True, label='hist')
+plt.legend()
+plt.ylabel('$f(x)$')
+plt.xlabel('$x$')
+plt.show()
+
+
+
+считать таблицу из файла
+добавить строку
+добавить столбец
+удалить строку
+удалить столбец
+отредактировать значение
+сохранить таблицу в файла
+
+frame=pandas.read_csv("example.tsv", sep='\t',parse_dates=['Birth'])
+
+
+Построить график функции и найти её минимумы
+
+--------------------------------------------------------------
+что сделает f = numpy.arange(1, 2, 0.3, dtype=float)
+--------------------------------------------------------------
+Пусть даны два вектора a = numpy.array([6, 3, -5]) и b = numpy.array([-1, 0, 7]). 
+Какая из следующих команд считает евклидово расстояние между этими векторами?
+scipy.spatial.distance.cdist(a[numpy.newaxis, :], b[numpy.newaxis, :], metric='euclidean')
+--------------------------------------------------------------
+Пусть даны два вектора a = numpy.array([0, -1, 11]) и b = numpy.array([3, 7, 2]). 
+Какие из следующих команд считают скалярное произведение этих векторов?
+b.dot(a)
+--------------------------------------------------------------
+Пусть дан вектор a = numpy.array([8, 10, -1, 0, 0]). 
+Какие из следующих команд преобразуют вектор a к вектор-столбцу?
+a = a[:, numpy.newaxis]
+a = a.reshape((5, 1))
+---------------------------------------------------
+
+e = np.arange(1, 13, 2).reshape((3, 2))
+d = np.ones((10, 10))
+b = np.eye(2, 3)
+Пусть создан массив с помощью команды a = np.eye(4, 5). 
+Что вернет операция a[[0, 3], [1, 3]]?
+np.linalg.det(...)
+С помощью каких из нижеприведенных функций библиотеки numpy
+ можно вычислить собственные числа и собственные векторы матрицы?
+np.linalg.eig(...)
+---------------------------------------------------
